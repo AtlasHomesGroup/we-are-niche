@@ -1,36 +1,120 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# We Are Niche
 
-## Getting Started
+The corporate umbrella website for the **Niche real estate ecosystem** — connecting Niche Solutions, Niche Data, Niche CRM, Get Niche Now, Niche Space, Niche Acquisitions, JV With Niche, and Niche Home Help under one place.
 
-First, run the development server:
+- **Production domain:** [we-are-niche.com](https://we-are-niche.com)
+- **Repository:** [github.com/AtlasHomesGroup/we-are-niche](https://github.com/AtlasHomesGroup/we-are-niche)
+- **Hosting:** Vercel (auto-deploys from the default branch)
+
+This site is **not** a replacement for any existing Niche brand website. Each brand site stays live and independent. We Are Niche is the umbrella hub that explains how the ecosystem connects and routes visitors to the correct dedicated website.
+
+## Tech stack
+
+- **Framework:** [Next.js 16](https://nextjs.org/) (App Router)
+- **Language:** TypeScript
+- **Styling:** [Tailwind CSS v4](https://tailwindcss.com/) with theme tokens defined in `src/app/globals.css`
+- **Fonts:** Geist Sans + Geist Mono via `next/font/google`
+- **Search:** lightweight client-side search over a static page index (no third-party dependency)
+- **Hosting target:** Vercel (zero config — `next build` is auto-detected)
+
+## Local setup
 
 ```bash
+git clone https://github.com/AtlasHomesGroup/we-are-niche.git
+cd we-are-niche
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The dev server runs on [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Command | What it does |
+| --- | --- |
+| `npm run dev` | Start the Turbopack dev server with HMR |
+| `npm run build` | Production build (`next build`) |
+| `npm run start` | Start the production server (after build) |
+| `npm run lint` | Run ESLint |
 
-## Learn More
+## Vercel deployment notes
 
-To learn more about Next.js, take a look at the following resources:
+1. In Vercel, **Add New Project → Import Git Repository** and select `AtlasHomesGroup/we-are-niche`.
+2. Vercel will auto-detect Next.js. No build overrides needed.
+3. Set the production domain to `we-are-niche.com` under **Settings → Domains**.
+4. No environment variables are required for the first version — the embedded Google Map uses the keyless public embed URL.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Folder structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```text
+public/
+  brand/                 # Local copies of Niche brand assets (see "Brand assets" below)
+src/
+  app/
+    layout.tsx           # Root layout — Header, Footer, first-load animation
+    page.tsx             # Homepage (Hero, EcosystemMap, CategoryCards, SummaryBlocks)
+    not-found.tsx        # Custom 404
+    sitemap.ts           # XML sitemap (/sitemap.xml)
+    robots.ts            # robots.txt
+    ecosystem/           # Niche Solutions, Niche Data, Niche CRM
+    community/           # Get Niche Now, Niche Space
+    acquisitions/        # Niche Acquisitions, JV With Niche, Niche Home Help
+    company/             # About Us, Michael Franke, Contact
+    privacy-policy/      # Legal placeholder
+    terms-and-conditions/# Legal placeholder
+    sitemap/             # Human-facing /sitemap page
+    globals.css          # Tailwind + Niche theme tokens
+  components/
+    layout/              # Header, MenuPanel, SearchOverlay, Footer, FooterDivider, FirstLoadAnimation
+    home/                # Hero, EcosystemMap, CategoryCards, SummaryBlocks
+    pages/               # PageHero, Prose, VisitWebsiteButton, EcosystemFit, RelatedBrands, BrandPageLayout
+    ui/                  # Container, Section, Button, Card
+  lib/
+    site-config.ts       # Site name, URL, contact info, social links, brand asset paths
+    navigation.ts        # Menu structure (Ecosystem / Community / Acquisitions / Company)
+    brands.ts            # The 8 brand entries — name, route, external URL, related brands
+    pages.ts             # Page metadata used by SEO and search
+    search-index.ts      # Static client-side search index
+    seo.ts               # buildMetadata() helper for per-page metadata
+docs/
+  we_are_niche_claude_code_spec.md  # Original product/content spec
+```
 
-## Deploy on Vercel
+## Brand assets
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Original sources (kept here for reference — local copies are committed to the repo):
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Horizontal logo: <https://ik.imagekit.io/ldqszfymv/Niche%20Logos/Niche_niche-orange-horizontal.png?updatedAt=1774639484957>
+- N icon (favicon source): <https://ik.imagekit.io/ldqszfymv/Niche%20Logos/Niche_niche-orange-icon.png?updatedAt=1774639480539>
+
+Local paths used by the app:
+
+- `public/brand/niche-orange-horizontal.png` — used in the footer
+- `public/brand/niche-orange-icon.png` — used as favicon, in the menu panel, footer divider, intro animation, and 404 page
+
+If you regenerate or replace these files, keep the same filenames so component references continue to work.
+
+## SEO and search
+
+- Per-page `Metadata` is built via `buildMetadata()` in `src/lib/seo.ts` and consumed by each route's exported `metadata`.
+- Default Open Graph image is configured to live at `public/brand/og-default.png`. Replace it with a finalized 1200×630 OG image before launch.
+- An XML sitemap is auto-generated at `/sitemap.xml` from `src/app/sitemap.ts`.
+- The human-facing sitemap page lives at `/sitemap` and lists internal pages plus external brand websites.
+- Site search reads from `src/lib/search-index.ts` (a thin wrapper over `pages.ts`) — no external service required.
+
+## Legal placeholder warning
+
+`/privacy-policy` and `/terms-and-conditions` are **placeholder pages**. They are clearly marked as temporary. They must be replaced with finalized copy reviewed by legal counsel before relying on them.
+
+## External brand websites
+
+| Brand | Internal page | External site |
+| --- | --- | --- |
+| Niche Solutions | `/ecosystem/niche-solutions` | <https://www.nichesolutions.ai/> |
+| Niche Data | `/ecosystem/niche-data` | <https://nichedata.ai/> |
+| Niche CRM | `/ecosystem/niche-crm` | <https://www.nichecrm.ai/> |
+| Get Niche Now | `/community/get-niche-now` | <https://www.getnichenow.com/> |
+| Niche Space | `/community/niche-space` | <https://www.niche-space.com/> |
+| Niche Acquisitions | `/acquisitions/niche-acquisitions` | <https://www.nicheacquisition.com/> |
+| JV With Niche | `/acquisitions/jv-with-niche` | <https://jvwithniche.com/> |
+| Niche Home Help | `/acquisitions/niche-home-help` | <https://www.nichehomehelp.com/> |
