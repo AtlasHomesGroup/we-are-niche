@@ -73,8 +73,10 @@ export function EcosystemMap() {
     return () => mq.removeEventListener("change", onChange);
   }, []);
 
+  const isMobile = viewport.w < 720;
+
   useEffect(() => {
-    if (focused || reduceMotion) return;
+    if (focused || reduceMotion || isMobile) return;
     let raf = 0;
     const start = performance.now();
     const tick = (t: number) => {
@@ -83,7 +85,7 @@ export function EcosystemMap() {
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [focused, reduceMotion]);
+  }, [focused, reduceMotion, isMobile]);
 
   useEffect(() => {
     const onKey = (e: globalThis.KeyboardEvent) => {
@@ -97,8 +99,7 @@ export function EcosystemMap() {
     return () => window.removeEventListener("keydown", onKey);
   }, [focused]);
 
-  const isMobile = viewport.w < 720;
-  const R = isMobile ? 240 : 270;
+  const R = 270;
 
   const layout: LaidOutBranch[] = useMemo(() => {
     return ecosystemMapData.branches.map((b) => {
@@ -117,6 +118,10 @@ export function EcosystemMap() {
 
   const focusedBranch = focused ? layout.find((b) => b.id === focused) ?? null : null;
 
+  if (isMobile) {
+    return <MobileEcosystemMap stageRef={stageRef} layout={layout} />;
+  }
+
   return (
     <section
       ref={stageRef}
@@ -128,7 +133,7 @@ export function EcosystemMap() {
         background: "var(--niche-paper)",
         color: "var(--niche-ink)",
         fontFamily: "var(--font-sans-body)",
-        padding: isMobile ? "20px 0 16px" : "32px 0 24px",
+        padding: "32px 0 24px",
       }}
     >
       <Header focused={!!focused} isMobile={isMobile} />
@@ -990,6 +995,217 @@ function eyebrowStyle(extra: CSSProperties = {}): CSSProperties {
     display: "inline-block",
     ...extra,
   };
+}
+
+function MobileEcosystemMap({
+  stageRef,
+  layout,
+}: {
+  stageRef: React.RefObject<HTMLDivElement | null>;
+  layout: LaidOutBranch[];
+}) {
+  return (
+    <section
+      ref={stageRef}
+      className="relative"
+      style={{
+        background: "var(--niche-paper)",
+        color: "var(--niche-ink)",
+        fontFamily: "var(--font-sans-body)",
+        padding: "20px 0 16px",
+      }}
+    >
+      <div className="mx-auto max-w-3xl px-6 text-center">
+        <h2
+          style={{
+            fontFamily: "var(--font-sans-body)",
+            fontWeight: 600,
+            fontSize: 28,
+            lineHeight: 1.15,
+            letterSpacing: "-0.02em",
+            margin: 0,
+            color: "var(--niche-ink)",
+          }}
+        >
+          {ecosystemMapData.headlineLead}
+          <span style={{ color: "var(--niche-coral-deep)" }}>
+            {ecosystemMapData.headlineEmphasis}
+          </span>
+          {ecosystemMapData.headlineTrail}
+        </h2>
+      </div>
+
+      <div className="mt-6 flex justify-center">
+        <div
+          className="relative flex items-center justify-center"
+          style={{ width: 96, height: 96 }}
+        >
+          <span
+            aria-hidden
+            className="absolute inset-0 rounded-full"
+            style={{
+              border: "1px dashed var(--niche-coral)",
+              opacity: 0.45,
+            }}
+          />
+          <Image
+            src="/brand/niche-stacked-logo.png"
+            alt="Niche"
+            width={356}
+            height={355}
+            priority
+            style={{ width: 76, height: "auto" }}
+          />
+        </div>
+      </div>
+
+      <div className="mx-auto mt-7 flex max-w-md flex-col gap-4 px-5">
+        {layout.map((b) => (
+          <MobileBranchCard key={b.id} branch={b} />
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function MobileBranchCard({ branch }: { branch: LaidOutBranch }) {
+  return (
+    <article
+      style={{
+        borderRadius: 14,
+        border: "1px solid var(--niche-line)",
+        background: "var(--niche-paper-warm)",
+        overflow: "hidden",
+      }}
+    >
+      <header style={{ padding: "16px 18px 14px" }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "baseline",
+            gap: 10,
+            marginBottom: 6,
+          }}
+        >
+          <span
+            style={{
+              fontFamily: "var(--font-sans-body)",
+              fontWeight: 600,
+              fontSize: 22,
+              color: "var(--niche-coral-deep)",
+              lineHeight: 1,
+              letterSpacing: "-0.01em",
+            }}
+          >
+            {branch.number}
+          </span>
+          <span
+            style={{
+              fontFamily: "var(--font-mono-display)",
+              fontSize: 11,
+              letterSpacing: "0.22em",
+              textTransform: "uppercase",
+              color: "var(--niche-coral-deep)",
+              fontWeight: 500,
+            }}
+          >
+            {branch.label}
+          </span>
+        </div>
+        <p
+          style={{
+            fontFamily: "var(--font-sans-body)",
+            fontWeight: 500,
+            fontSize: 15,
+            lineHeight: 1.3,
+            color: "var(--niche-ink)",
+            margin: "0 0 6px",
+          }}
+        >
+          {branch.tagline}
+        </p>
+        <p
+          style={{
+            fontSize: 13,
+            lineHeight: 1.5,
+            color: "var(--niche-ink-soft)",
+            margin: 0,
+          }}
+        >
+          {branch.description}
+        </p>
+      </header>
+      <ul
+        style={{
+          listStyle: "none",
+          margin: 0,
+          padding: 0,
+          borderTop: "1px solid var(--niche-line)",
+        }}
+      >
+        {branch.nodes.map((n, i) => (
+          <li
+            key={n.slug}
+            style={{
+              borderBottom:
+                i < branch.nodes.length - 1
+                  ? "1px solid var(--niche-line-soft)"
+                  : "none",
+            }}
+          >
+            <Link
+              href={n.route}
+              className="niche-focus-ring"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                gap: 10,
+                padding: "12px 18px",
+                color: "var(--niche-ink)",
+                textDecoration: "none",
+              }}
+            >
+              <span style={{ minWidth: 0 }}>
+                <span
+                  style={{
+                    display: "block",
+                    fontWeight: 600,
+                    fontSize: 14,
+                    color: "var(--niche-ink)",
+                    lineHeight: 1.25,
+                  }}
+                >
+                  {n.name}
+                </span>
+                <span
+                  style={{
+                    display: "block",
+                    fontSize: 12,
+                    color: "var(--niche-ink-soft)",
+                    marginTop: 2,
+                    lineHeight: 1.3,
+                  }}
+                >
+                  {n.role}
+                </span>
+              </span>
+              <span
+                aria-hidden
+                style={{
+                  color: "var(--niche-coral-deep)",
+                  fontSize: 18,
+                  flexShrink: 0,
+                }}
+              >
+                →
+              </span>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </article>
+  );
 }
 
 function polarToCartesian(cx: number, cy: number, r: number, angleDeg: number) {
