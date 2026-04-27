@@ -4,9 +4,9 @@ import { menuGroups } from "@/lib/navigation";
 
 export function CategoryCards() {
   return (
-    <section className="py-20 sm:py-28">
+    <section className="py-10 sm:py-14">
       <Container width="wide">
-        <div className="mb-12 max-w-2xl">
+        <div className="mb-8 max-w-2xl">
           <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-[var(--color-accent)]">
             Where to start
           </p>

@@ -8,7 +8,7 @@ interface PageHeroProps {
 
 export function PageHero({ eyebrow, title, subtitle }: PageHeroProps) {
   return (
-    <section className="niche-gradient-bg pb-12 pt-12 sm:pb-16 sm:pt-20">
+    <section className="niche-gradient-bg pb-8 pt-8 sm:pb-10 sm:pt-12">
       <Container width="wide">
         <div className="max-w-3xl niche-anim-fade-in">
           <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-[var(--color-accent)]">

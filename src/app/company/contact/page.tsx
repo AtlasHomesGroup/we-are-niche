@@ -26,7 +26,7 @@ export default function ContactPage() {
         title="Contact"
         subtitle="Reach the Niche team for general questions, data support, or community access."
       />
-      <section className="py-12 sm:py-16">
+      <section className="py-8 sm:py-10">
         <Container width="wide">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_1fr]">
             <div className="flex flex-col gap-10">

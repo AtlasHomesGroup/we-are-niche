@@ -14,7 +14,7 @@ export function Section({
   ...rest
 }: SectionProps) {
   return (
-    <section className={`py-16 sm:py-24 ${className}`} {...rest}>
+    <section className={`py-10 sm:py-14 ${className}`} {...rest}>
       {bare ? children : <Container width={containerWidth}>{children}</Container>}
     </section>
   );

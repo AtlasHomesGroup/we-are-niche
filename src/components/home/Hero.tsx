@@ -2,9 +2,9 @@ import { Container } from "@/components/ui/Container";
 
 export function Hero() {
   return (
-    <section className="niche-gradient-bg relative overflow-hidden pt-12 sm:pt-20">
+    <section className="niche-gradient-bg relative overflow-hidden pt-8 sm:pt-12">
       <HeroBackdrop />
-      <Container width="wide" className="relative pb-20 pt-12 sm:pb-32 sm:pt-20">
+      <Container width="wide" className="relative pb-12 pt-8 sm:pb-16 sm:pt-12">
         <div className="mx-auto flex max-w-3xl flex-col items-center text-center niche-anim-fade-in">
           <span className="mb-7 inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] bg-white/70 px-3.5 py-1 text-[11px] font-medium uppercase tracking-[0.18em] text-[var(--color-text-muted)] backdrop-blur-sm">
             <span className="h-1.5 w-1.5 rounded-full bg-[var(--color-accent)]" />

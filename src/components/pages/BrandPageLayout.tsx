@@ -28,7 +28,7 @@ export function BrandPageLayout({
   return (
     <>
       <PageHero eyebrow={eyebrow} title={brand.name} subtitle={subtitle} />
-      <section className="py-16 sm:py-20">
+      <section className="py-10 sm:py-12">
         <Container width="wide">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_320px]">
             <div>

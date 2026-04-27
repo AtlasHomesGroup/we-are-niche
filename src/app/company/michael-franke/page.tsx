@@ -39,7 +39,7 @@ export default function MichaelFrankePage() {
         title="Michael Franke"
         subtitle="Educator, investor, and operator — connecting real estate education, data, CRM, acquisitions, and community under one ecosystem."
       />
-      <section className="py-16 sm:py-20">
+      <section className="py-10 sm:py-12">
         <Container width="wide">
           <div className="grid grid-cols-1 gap-14 lg:grid-cols-[1fr_300px]">
             <Prose>

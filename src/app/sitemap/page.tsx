@@ -23,7 +23,7 @@ export default function SitemapPage() {
         title="Everything in the Niche ecosystem"
         subtitle="Internal pages and external brand websites, organized by category."
       />
-      <section className="py-12 sm:py-16">
+      <section className="py-8 sm:py-10">
         <Container width="wide">
           <div className="grid grid-cols-1 gap-12 md:grid-cols-2">
             <SitemapGroup title="Home">

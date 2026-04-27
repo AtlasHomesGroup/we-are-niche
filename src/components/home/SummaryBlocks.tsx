@@ -17,7 +17,7 @@ const blocks = [
 
 export function SummaryBlocks() {
   return (
-    <section className="niche-gradient-soft py-20 sm:py-28">
+    <section className="niche-gradient-soft py-10 sm:py-14">
       <Container width="wide">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
           {blocks.map((b) => (

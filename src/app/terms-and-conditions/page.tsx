@@ -22,7 +22,7 @@ export default function TermsPage() {
         title="Terms & Conditions"
         subtitle="Temporary placeholder pending final legal review."
       />
-      <section className="py-12 sm:py-16">
+      <section className="py-8 sm:py-10">
         <Container width="narrow">
           <div className="mb-8 rounded-[var(--radius-niche)] border border-[var(--color-accent)]/40 bg-[var(--color-accent-tint)] p-5 text-sm text-[var(--color-text)]">
             <strong>Notice:</strong> These Terms &amp; Conditions are

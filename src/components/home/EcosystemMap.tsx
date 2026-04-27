@@ -128,7 +128,7 @@ export function EcosystemMap() {
         background: "var(--niche-paper)",
         color: "var(--niche-ink)",
         fontFamily: "var(--font-sans-body)",
-        padding: isMobile ? "32px 0 80px" : "56px 0 100px",
+        padding: isMobile ? "20px 0 40px" : "32px 0 56px",
       }}
     >
       <Header focused={!!focused} isMobile={isMobile} />
@@ -139,7 +139,7 @@ export function EcosystemMap() {
           width: "100%",
           maxWidth: isMobile ? "100%" : 980,
           aspectRatio: "1 / 1",
-          marginTop: isMobile ? 16 : 32,
+          marginTop: isMobile ? 56 : 88,
         }}
       >
         <svg

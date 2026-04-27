@@ -31,7 +31,7 @@ export default function AboutPage() {
         title="About Niche"
         subtitle="A connected real estate ecosystem built around technology, data, CRM, education, acquisitions, partnerships, and community."
       />
-      <section className="py-16 sm:py-20">
+      <section className="py-10 sm:py-12">
         <Container width="wide">
           <div className="grid grid-cols-1 gap-14 lg:grid-cols-[1fr_280px]">
             <Prose>
