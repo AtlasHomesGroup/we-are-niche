@@ -82,17 +82,15 @@ docs/
 
 ## Brand assets
 
-Original sources (kept here for reference — local copies are committed to the repo):
-
-- Horizontal logo: <https://ik.imagekit.io/ldqszfymv/Niche%20Logos/Niche_niche-orange-horizontal.png?updatedAt=1774639484957>
-- N icon (favicon source): <https://ik.imagekit.io/ldqszfymv/Niche%20Logos/Niche_niche-orange-icon.png?updatedAt=1774639480539>
+The canonical Niche mark is the round orange N. It is the single source of truth for every brand-mark surface on the site.
 
 Local paths used by the app:
 
-- `public/brand/niche-orange-horizontal.png` — used in the footer
-- `public/brand/niche-orange-icon.png` — used as favicon, in the menu panel, footer divider, intro animation, and 404 page
+- `public/brand/niche-app-logo.svg` — the round orange N. Used in the header context, footer, menu panel, footer divider, intro animation, 404, and as the source for the favicon (`src/app/icon.svg`) and Apple touch icon (`src/app/apple-icon.png`).
+- `public/brand/niche-stacked-logo.png` — the N + NICHE wordmark stacked vertically, used as the constellation hub on the homepage.
+- `public/brand/og-default.png` — the 1200×630 social preview, generated from the round N via `node scripts/generate-og.mjs`.
 
-If you regenerate or replace these files, keep the same filenames so component references continue to work.
+If you replace `niche-app-logo.svg`, regenerate the social preview (`node scripts/generate-og.mjs`) and the Apple touch icon. The `<link rel="icon">` is auto-emitted by Next.js from `src/app/icon.svg`.
 
 ## SEO and search
 

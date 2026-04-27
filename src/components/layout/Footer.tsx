@@ -19,13 +19,14 @@ export function Footer() {
             <Image
               src={siteConfig.brand.horizontalLogo}
               alt="Niche"
-              width={180}
-              height={80}
-              className="h-10 w-auto object-contain lg:h-12"
+              width={96}
+              height={96}
+              className="h-10 w-10 object-contain lg:h-12 lg:w-12"
             />
           </Link>
           <p className="max-w-[180px] text-xs text-[var(--color-text-muted)] lg:max-w-md lg:text-sm">
-            {siteConfig.motto}
+            <span className="block lg:inline">Driven by real estate.</span>{" "}
+            <span className="block lg:inline">Powered by technology.</span>
           </p>
         </div>
 
