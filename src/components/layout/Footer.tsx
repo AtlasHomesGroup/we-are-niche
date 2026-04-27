@@ -7,9 +7,9 @@ import { SocialIcon } from "./SocialIcon";
 
 export function Footer() {
   return (
-    <footer className="mt-12 pb-12">
+    <footer className="pb-4">
       <FooterDivider />
-      <div className="mx-auto mt-16 grid max-w-6xl grid-cols-1 gap-12 px-6 sm:px-8 lg:grid-cols-2">
+      <div className="mx-auto mt-6 grid max-w-6xl grid-cols-1 gap-12 px-6 sm:px-8 lg:grid-cols-2">
         <div className="flex flex-col gap-5">
           <Link href="/" aria-label="We Are Niche home" className="inline-block">
             <Image
@@ -63,7 +63,7 @@ export function Footer() {
         </div>
       </div>
 
-      <p className="mx-auto mt-12 max-w-6xl px-6 text-center text-xs text-[var(--color-text-soft)] sm:px-8">
+      <p className="mx-auto mt-3 max-w-6xl px-6 text-center text-xs text-[var(--color-text-soft)] sm:px-8">
         {siteConfig.copyright}
       </p>
     </footer>
