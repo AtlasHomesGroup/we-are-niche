@@ -12,6 +12,10 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Reference-only design prototype (not part of the app build).
+    "design/**",
+    // One-shot scripts run from Node CLI.
+    "scripts/**",
   ]),
 ]);
 
