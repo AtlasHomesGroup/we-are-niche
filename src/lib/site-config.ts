@@ -11,10 +11,12 @@ export const siteConfig = {
     "We Are Niche is the umbrella website for the Niche real estate ecosystem, connecting technology, data, CRM, education, acquisitions, partnerships, and community.",
   ogImage: "/brand/og-default.png",
   brand: {
-    // Single canonical brand mark — the round orange Niche N. Used at every
-    // size: header context, footer, menu panel, divider, intro animation,
-    // 404, and as the favicon source.
-    horizontalLogo: "/brand/niche-app-logo.svg",
+    // Two canonical marks:
+    // - horizontalLogo: the round N + 'NICHE' wordmark, used ONLY in the footer.
+    // - iconLogo: the round N icon alone, used at every small-icon surface
+    //   (header context, menu panel, footer divider, intro animation, 404)
+    //   and as the favicon / Apple touch icon source.
+    horizontalLogo: "/brand/niche-orange-horizontal.png",
     iconLogo: "/brand/niche-app-logo.svg",
   },
   contact: {

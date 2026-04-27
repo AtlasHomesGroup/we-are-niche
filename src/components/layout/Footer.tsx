@@ -19,9 +19,9 @@ export function Footer() {
             <Image
               src={siteConfig.brand.horizontalLogo}
               alt="Niche"
-              width={96}
-              height={96}
-              className="h-10 w-10 object-contain lg:h-12 lg:w-12"
+              width={486}
+              height={218}
+              className="h-9 w-auto object-contain lg:h-12"
             />
           </Link>
           <p className="max-w-[180px] text-xs text-[var(--color-text-muted)] lg:max-w-md lg:text-sm">
