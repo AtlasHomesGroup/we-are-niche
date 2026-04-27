@@ -3,6 +3,7 @@ import Image from "next/image";
 import { siteConfig } from "@/lib/site-config";
 import { legalLinks } from "@/lib/navigation";
 import { FooterDivider } from "./FooterDivider";
+import { SocialIcon } from "./SocialIcon";
 
 export function Footer() {
   return (
@@ -36,9 +37,11 @@ export function Footer() {
                     href={s.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="niche-focus-ring inline-flex items-center rounded-full border border-[var(--color-border)] bg-white px-4 py-1.5 text-xs text-[var(--color-text)] transition-all hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
+                    aria-label={s.label}
+                    title={s.label}
+                    className="niche-focus-ring inline-flex h-9 w-9 items-center justify-center rounded-full border border-[var(--color-border)] bg-white text-[var(--color-text-muted)] transition-all hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
                   >
-                    {s.label}
+                    <SocialIcon name={s.label} className="h-[18px] w-[18px]" />
                   </a>
                 </li>
               ))}
@@ -57,12 +60,12 @@ export function Footer() {
               </li>
             ))}
           </ul>
-
-          <p className="text-xs text-[var(--color-text-soft)] lg:text-right">
-            {siteConfig.copyright}
-          </p>
         </div>
       </div>
+
+      <p className="mx-auto mt-12 max-w-6xl px-6 text-center text-xs text-[var(--color-text-soft)] sm:px-8">
+        {siteConfig.copyright}
+      </p>
     </footer>
   );
 }

@@ -406,8 +406,6 @@ export function EcosystemMap() {
         onClose={() => setFocused(null)}
         isMobile={isMobile}
       />
-
-      <FooterLegend focused={!!focused} isMobile={isMobile} />
     </section>
   );
 }
@@ -425,64 +423,23 @@ function Header({ focused, isMobile }: { focused: boolean; isMobile: boolean }) 
         pointerEvents: focused ? "none" : "auto",
       }}
     >
-      <div style={eyebrowStyle({ marginBottom: 14 })}>
-        <span style={eyebrowDash({ marginRight: 14 })} />
-        {ecosystemMapData.kicker}
-        <span style={eyebrowDash({ marginLeft: 14 })} />
-      </div>
       <h2
         style={{
-          fontFamily: "var(--font-serif-display)",
-          fontWeight: 400,
-          fontSize: isMobile ? 32 : "clamp(36px, 4.6vw, 60px)",
+          fontFamily: "var(--font-sans-body)",
+          fontWeight: 600,
+          fontSize: isMobile ? 32 : "clamp(36px, 4.6vw, 56px)",
           lineHeight: 1.1,
           letterSpacing: "-0.02em",
-          margin: "0 0 14px",
+          margin: 0,
           color: "var(--niche-ink)",
         }}
       >
         {ecosystemMapData.headlineLead}
-        <em style={{ color: "var(--niche-coral-deep)", fontStyle: "italic" }}>
+        <span style={{ color: "var(--niche-coral-deep)" }}>
           {ecosystemMapData.headlineEmphasis}
-        </em>
+        </span>
         {ecosystemMapData.headlineTrail}
       </h2>
-      <p
-        style={{
-          fontSize: isMobile ? 14 : 15.5,
-          lineHeight: 1.55,
-          color: "var(--niche-ink-soft)",
-          maxWidth: 520,
-          margin: "0 auto",
-          fontWeight: 400,
-        }}
-      >
-        {ecosystemMapData.lede}
-      </p>
-    </div>
-  );
-}
-
-function FooterLegend({ focused, isMobile }: { focused: boolean; isMobile: boolean }) {
-  return (
-    <div
-      style={{
-        maxWidth: 1100,
-        margin: "20px auto 0",
-        padding: isMobile ? "0 24px" : "0 64px",
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "flex-end",
-        borderTop: "1px solid var(--niche-line)",
-        paddingTop: 22,
-        opacity: focused ? 0.4 : 1,
-        transition: "opacity 500ms ease",
-        flexWrap: "wrap",
-        gap: 10,
-      }}
-    >
-      <div style={microStyle()}>Fig. 01 — Niche Group · Operating Map</div>
-      <div style={microStyle()}>Revision 04 · 2026</div>
     </div>
   );
 }
@@ -546,12 +503,12 @@ function HubOverlay({ focused, onClose }: { focused: boolean; onClose: () => voi
       }}
     >
       <Image
-        src="/brand/niche-app-logo.svg"
-        alt=""
-        width={130}
-        height={130}
+        src="/brand/niche-stacked-logo.png"
+        alt="Niche"
+        width={356}
+        height={355}
         priority
-        style={{ width: 130, height: "auto", display: "block", margin: "0 auto" }}
+        style={{ width: 180, height: "auto", display: "block", margin: "0 auto" }}
       />
       {focused && (
         <span
@@ -676,11 +633,12 @@ function BranchLabel({
       >
         <span
           style={{
-            fontFamily: "var(--font-serif-display)",
-            fontStyle: "italic",
-            fontSize: isMobile ? 26 : 32,
+            fontFamily: "var(--font-sans-body)",
+            fontWeight: 600,
+            fontSize: isMobile ? 22 : 26,
             color: "var(--niche-coral-deep)",
             lineHeight: 1,
+            letterSpacing: "-0.01em",
           }}
         >
           {branch.number}
@@ -701,8 +659,8 @@ function BranchLabel({
 
       <div
         style={{
-          fontFamily: "var(--font-serif-display)",
-          fontStyle: "italic",
+          fontFamily: "var(--font-sans-body)",
+          fontWeight: 500,
           fontSize: isMobile ? 13 : 14.5,
           lineHeight: 1.3,
           color: "var(--niche-ink)",
@@ -813,9 +771,10 @@ function VentureCard({
       </div>
       <div
         style={{
-          fontFamily: "var(--font-serif-display)",
-          fontSize: isMobile ? 13 : 15.5,
-          lineHeight: 1.18,
+          fontFamily: "var(--font-sans-body)",
+          fontWeight: 600,
+          fontSize: isMobile ? 13 : 14.5,
+          lineHeight: 1.2,
           color: "var(--niche-ink)",
           marginBottom: 2,
           letterSpacing: "-0.005em",
@@ -825,9 +784,9 @@ function VentureCard({
       </div>
       <div
         style={{
+          fontFamily: "var(--font-sans-body)",
           fontSize: isMobile ? 9.5 : 10.5,
           color: "var(--niche-ink-soft)",
-          fontStyle: "italic",
           lineHeight: 1.3,
         }}
       >
@@ -897,11 +856,12 @@ function DescriptionPanel({
         <div style={{ display: "flex", alignItems: "baseline", gap: 12 }}>
           <span
             style={{
-              fontFamily: "var(--font-serif-display)",
-              fontStyle: "italic",
-              fontSize: 26,
+              fontFamily: "var(--font-sans-body)",
+              fontWeight: 600,
+              fontSize: 22,
               color: "var(--niche-coral-deep)",
               lineHeight: 1,
+              letterSpacing: "-0.01em",
             }}
           >
             {shown.number}
@@ -936,9 +896,10 @@ function DescriptionPanel({
 
       <div
         style={{
-          fontFamily: "var(--font-serif-display)",
-          fontSize: isMobile ? 22 : 26,
-          lineHeight: 1.18,
+          fontFamily: "var(--font-sans-body)",
+          fontWeight: 600,
+          fontSize: isMobile ? 20 : 22,
+          lineHeight: 1.2,
           color: "var(--niche-ink)",
           letterSpacing: "-0.012em",
           marginBottom: 10,
@@ -1026,30 +987,6 @@ function eyebrowStyle(extra: CSSProperties = {}): CSSProperties {
     color: "var(--niche-coral-deep)",
     fontWeight: 500,
     display: "inline-block",
-    ...extra,
-  };
-}
-
-function eyebrowDash(extra: CSSProperties = {}): CSSProperties {
-  return {
-    display: "inline-block",
-    width: 28,
-    height: 1,
-    background: "var(--niche-coral-deep)",
-    verticalAlign: "middle",
-    opacity: 0.6,
-    ...extra,
-  };
-}
-
-function microStyle(extra: CSSProperties = {}): CSSProperties {
-  return {
-    fontFamily: "var(--font-mono-display)",
-    fontSize: 10,
-    letterSpacing: "0.2em",
-    textTransform: "uppercase",
-    color: "var(--niche-ink-faint)",
-    fontWeight: 400,
     ...extra,
   };
 }
