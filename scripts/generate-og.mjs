@@ -11,7 +11,7 @@ const W = 1200;
 const H = 630;
 const LOGO_PX = 380;
 
-const logoSvgPath = resolve(root, "public/brand/niche-app-logo.svg");
+const logoSvgPath = resolve(root, "public/brand/niche-app-logo.png");
 const outPath = resolve(root, "public/brand/og-default.png");
 
 async function main() {

@@ -17,7 +17,7 @@ export const siteConfig = {
     //   (header context, menu panel, footer divider, intro animation, 404)
     //   and as the favicon / Apple touch icon source.
     horizontalLogo: "/brand/niche-orange-horizontal.png",
-    iconLogo: "/brand/niche-app-logo.svg",
+    iconLogo: "/brand/niche-app-logo.png",
   },
   contact: {
     phone: "816-310-1161",

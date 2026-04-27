@@ -85,11 +85,11 @@ docs/
 Two canonical brand marks live in `public/brand/` — each has a specific role:
 
 - `niche-orange-horizontal.png` — the round N + "NICHE" wordmark, horizontal lockup. **Used only in the footer.**
-- `niche-app-logo.svg` — the round orange N icon alone. Used at every small-icon surface: the menu-panel header, footer divider, first-load animation, the 404 page, and as the source for the favicon (`src/app/icon.svg`) and Apple touch icon (`src/app/apple-icon.png`).
+- `niche-app-logo.png` — the round orange N icon alone. Used at every small-icon surface: the menu-panel header, footer divider, first-load animation, the 404 page, and as the source for the favicon (`src/app/icon.png`) and Apple touch icon (`src/app/apple-icon.png`).
 - `niche-stacked-logo.png` — N + NICHE stacked vertically. Used only as the constellation hub on the homepage.
 - `og-default.png` — 1200×630 social preview generated from the round N via `node scripts/generate-og.mjs`.
 
-If you replace `niche-app-logo.svg`, regenerate the social preview and the Apple touch icon. The `<link rel="icon">` is auto-emitted by Next.js from `src/app/icon.svg`.
+If you replace `niche-app-logo.png`, regenerate the social preview and the Apple touch icon. The `<link rel="icon">` is auto-emitted by Next.js from `src/app/icon.png`.
 
 ## SEO and search
 
