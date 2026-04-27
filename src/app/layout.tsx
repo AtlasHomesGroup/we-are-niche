@@ -25,12 +25,6 @@ export const metadata: Metadata = {
   description: siteConfig.defaultDescription,
   applicationName: siteConfig.name,
   authors: [{ name: siteConfig.name, url: siteConfig.url }],
-  icons: {
-    icon: [
-      { url: siteConfig.brand.iconLogo, type: "image/png" },
-    ],
-    apple: [{ url: siteConfig.brand.iconLogo }],
-  },
   openGraph: {
     type: "website",
     siteName: siteConfig.name,

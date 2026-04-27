@@ -9,28 +9,32 @@ export function Footer() {
   return (
     <footer className="pb-4">
       <FooterDivider />
-      <div className="mx-auto mt-6 grid max-w-6xl grid-cols-1 gap-12 px-6 sm:px-8 lg:grid-cols-2">
-        <div className="flex flex-col gap-5">
-          <Link href="/" aria-label="We Are Niche home" className="inline-block">
+      <div className="mx-auto mt-6 grid max-w-6xl grid-cols-1 gap-5 px-6 sm:px-8 lg:grid-cols-2 lg:gap-12">
+        <div className="flex flex-row items-center justify-center gap-4 lg:flex-col lg:items-start lg:justify-start lg:gap-5">
+          <Link
+            href="/"
+            aria-label="We Are Niche home"
+            className="inline-block flex-shrink-0"
+          >
             <Image
               src={siteConfig.brand.horizontalLogo}
               alt="Niche"
               width={180}
               height={80}
-              className="h-12 w-auto object-contain"
+              className="h-10 w-auto object-contain lg:h-12"
             />
           </Link>
-          <p className="max-w-md text-sm text-[var(--color-text-muted)]">
+          <p className="max-w-[180px] text-xs text-[var(--color-text-muted)] lg:max-w-md lg:text-sm">
             {siteConfig.motto}
           </p>
         </div>
 
-        <div className="flex flex-col gap-6 lg:items-end">
-          <div className="flex flex-col gap-3 lg:items-end">
+        <div className="flex flex-col items-center gap-4 lg:items-end lg:gap-6">
+          <div className="flex flex-col items-center gap-3 lg:items-end">
             <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[var(--color-accent)]">
               Follow the Niche ecosystem
             </p>
-            <ul className="flex flex-wrap gap-2 lg:justify-end">
+            <ul className="flex flex-wrap justify-center gap-2 lg:justify-end">
               {siteConfig.social.map((s) => (
                 <li key={s.label}>
                   <a
@@ -48,7 +52,7 @@ export function Footer() {
             </ul>
           </div>
 
-          <ul className="flex flex-wrap gap-x-5 gap-y-1 text-xs text-[var(--color-text-muted)] lg:justify-end">
+          <ul className="flex flex-wrap justify-center gap-x-5 gap-y-1 text-xs text-[var(--color-text-muted)] lg:justify-end">
             {legalLinks.map((l) => (
               <li key={l.href}>
                 <Link
