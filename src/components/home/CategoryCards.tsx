@@ -1,23 +1,27 @@
 import { Container } from "@/components/ui/Container";
 import { Card } from "@/components/ui/Card";
+import { Reveal, RevealStack, RevealItem } from "@/components/ui/Reveal";
 import { menuGroups } from "@/lib/navigation";
 
 export function CategoryCards() {
   return (
     <section className="py-10 sm:py-14">
       <Container width="wide">
-        <div className="mb-8 max-w-2xl">
+        <Reveal className="mb-8 max-w-2xl">
           <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-[var(--color-accent)]">
             Where to start
           </p>
           <h2 className="text-balance text-3xl font-semibold tracking-tight text-[var(--color-text)] sm:text-4xl">
             Explore the Niche ecosystem
           </h2>
-        </div>
+        </Reveal>
 
-        <ul className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <RevealStack
+          as="ul"
+          className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4"
+        >
           {menuGroups.map((group) => (
-            <li key={group.label}>
+            <RevealItem key={group.label} as="li">
               <Card className="flex h-full flex-col gap-5">
                 <div className="flex items-center justify-between">
                   <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[var(--color-accent)]">
@@ -56,9 +60,9 @@ export function CategoryCards() {
                   ))}
                 </ul>
               </Card>
-            </li>
+            </RevealItem>
           ))}
-        </ul>
+        </RevealStack>
       </Container>
     </section>
   );

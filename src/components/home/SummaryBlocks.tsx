@@ -1,4 +1,5 @@
 import { Container } from "@/components/ui/Container";
+import { RevealStack, RevealItem } from "@/components/ui/Reveal";
 
 const blocks = [
   {
@@ -19,9 +20,9 @@ export function SummaryBlocks() {
   return (
     <section className="niche-gradient-soft py-10 sm:py-14">
       <Container width="wide">
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
+        <RevealStack className="grid grid-cols-1 gap-10 md:grid-cols-3">
           {blocks.map((b) => (
-            <div key={b.label} className="flex flex-col gap-3">
+            <RevealItem key={b.label} className="flex flex-col gap-3">
               <div className="flex items-center gap-2">
                 <span className="h-2 w-2 rounded-full bg-[var(--color-accent)]" />
                 <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[var(--color-accent)]">
@@ -31,9 +32,9 @@ export function SummaryBlocks() {
               <p className="text-base leading-relaxed text-[var(--color-text-muted)]">
                 {b.body}
               </p>
-            </div>
+            </RevealItem>
           ))}
-        </div>
+        </RevealStack>
       </Container>
     </section>
   );

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { searchPages, type SearchEntry } from "@/lib/search-index";
 import { pages } from "@/lib/pages";
 
@@ -11,14 +12,18 @@ interface SearchOverlayProps {
 }
 
 export function SearchOverlay({ open, onClose }: SearchOverlayProps) {
-  if (!open) return null;
-  return <SearchOverlayInner onClose={onClose} />;
+  return (
+    <AnimatePresence>
+      {open && <SearchOverlayInner onClose={onClose} />}
+    </AnimatePresence>
+  );
 }
 
 function SearchOverlayInner({ onClose }: { onClose: () => void }) {
   const [query, setQuery] = useState("");
   const [activeIndex, setActiveIndex] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
+  const prefersReduced = useReducedMotion();
 
   const results: SearchEntry[] = useMemo(() => {
     if (!query.trim()) {
@@ -60,19 +65,26 @@ function SearchOverlayInner({ onClose }: { onClose: () => void }) {
   };
 
   return (
-    <div
-      className="fixed inset-0 z-50"
-      onKeyDown={handleKey}
-    >
-      <div
-        className="absolute inset-0 bg-[rgba(12,37,54,0.4)] backdrop-blur-sm"
+    <div className="fixed inset-0 z-50" onKeyDown={handleKey}>
+      <motion.button
+        type="button"
+        aria-label="Close search"
         onClick={onClose}
+        className="absolute inset-0 cursor-default bg-[rgba(12,37,54,0.4)] backdrop-blur-sm"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.2 }}
       />
-      <div
+      <motion.div
         role="dialog"
         aria-modal="true"
         aria-label="Search the site"
-        className="absolute inset-x-0 top-[10vh] mx-auto w-full max-w-2xl px-4 niche-anim-fade-in"
+        className="absolute inset-x-0 top-[10vh] mx-auto w-full max-w-2xl px-4"
+        initial={prefersReduced ? { opacity: 0 } : { opacity: 0, y: -16, scale: 0.98 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        exit={prefersReduced ? { opacity: 0 } : { opacity: 0, y: -10, scale: 0.98 }}
+        transition={{ type: "spring", stiffness: 360, damping: 32, mass: 0.8 }}
       >
         <div className="overflow-hidden rounded-[var(--radius-niche-lg)] border border-[var(--color-border)] bg-white shadow-2xl">
           <div className="flex items-center gap-3 border-b border-[var(--color-border-soft)] px-5 py-4">
@@ -136,7 +148,7 @@ function SearchOverlayInner({ onClose }: { onClose: () => void }) {
             <span className="sm:hidden">Tap a result to open.</span>
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }

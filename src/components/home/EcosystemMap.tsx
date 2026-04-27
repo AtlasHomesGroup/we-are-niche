@@ -10,6 +10,7 @@ import {
   type CSSProperties,
   type KeyboardEvent,
 } from "react";
+import { AnimatePresence, motion } from "motion/react";
 import {
   ecosystemMapData,
   type EcosystemBranch,
@@ -407,11 +408,16 @@ export function EcosystemMap() {
         )}
       </div>
 
-      <DescriptionPanel
-        branch={focusedBranch}
-        onClose={() => setFocused(null)}
-        isMobile={isMobile}
-      />
+      <AnimatePresence>
+        {focusedBranch && (
+          <DescriptionPanel
+            key={focusedBranch.id}
+            branch={focusedBranch}
+            onClose={() => setFocused(null)}
+            isMobile={isMobile}
+          />
+        )}
+      </AnimatePresence>
     </section>
   );
 }
@@ -807,38 +813,26 @@ function DescriptionPanel({
   onClose,
   isMobile,
 }: {
-  branch: LaidOutBranch | null;
+  branch: LaidOutBranch;
   onClose: () => void;
   isMobile: boolean;
 }) {
-  const visible = !!branch;
-  const [shown, setShown] = useState<LaidOutBranch | null>(branch);
-
-  // Sync truthy branch into local state during render (React's "store info from
-  // previous renders" pattern). Keep stale value visible during the exit animation.
-  if (branch && branch !== shown) setShown(branch);
-
-  useEffect(() => {
-    if (branch) return;
-    const t = window.setTimeout(() => setShown(null), 500);
-    return () => window.clearTimeout(t);
-  }, [branch]);
-
-  if (!shown) return null;
+  const shown = branch;
 
   return (
-    <div
+    <motion.div
       onClick={(e) => e.stopPropagation()}
       role="dialog"
       aria-modal="false"
       aria-label={`${shown.label} branch detail`}
+      initial={{ opacity: 0, y: 24, x: "-50%" }}
+      animate={{ opacity: 1, y: 0, x: "-50%" }}
+      exit={{ opacity: 0, y: 18, x: "-50%" }}
+      transition={{ type: "spring", stiffness: 320, damping: 32, mass: 0.9 }}
       style={{
         position: "fixed",
         left: "50%",
         bottom: isMobile ? 16 : 32,
-        transform: `translate(-50%, ${visible ? 0 : 20}px)`,
-        opacity: visible ? 1 : 0,
-        pointerEvents: visible ? "auto" : "none",
         width: "calc(100% - 32px)",
         maxWidth: isMobile ? 420 : 560,
         background: "var(--niche-paper-warm)",
@@ -846,7 +840,6 @@ function DescriptionPanel({
         borderRadius: 4,
         padding: isMobile ? "18px 22px" : "22px 28px",
         boxShadow: "var(--niche-shadow-panel)",
-        transition: `all 500ms ${TRANSITION_OVERSHOOT}`,
         zIndex: 30,
       }}
     >
@@ -980,7 +973,7 @@ function DescriptionPanel({
         <span>{shown.nodes.length} ventures</span>
         <span style={{ opacity: 0.7 }}>esc · click hub to close</span>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
