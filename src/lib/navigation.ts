@@ -23,6 +23,7 @@ export const menuGroups: NavGroup[] = [
     links: [
       { label: "Get Niche Now", href: "/community/get-niche-now" },
       { label: "Niche Space", href: "/community/niche-space" },
+      { label: "Niche Mastermind", href: "/community/niche-mastermind" },
     ],
   },
   {

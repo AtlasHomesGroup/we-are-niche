@@ -4,6 +4,7 @@ export type BrandSlug =
   | "niche-crm"
   | "get-niche-now"
   | "niche-space"
+  | "niche-mastermind"
   | "niche-acquisitions"
   | "jv-with-niche"
   | "niche-home-help";
@@ -81,7 +82,19 @@ export const brands: Record<BrandSlug, Brand> = {
     shortDescription:
       "The Niche office building in Independence, Missouri — home to in-person masterminds and community gatherings.",
     ctaLabel: "Visit Niche Space",
-    related: ["get-niche-now", "niche-acquisitions", "niche-solutions"],
+    related: ["get-niche-now", "niche-mastermind", "niche-solutions"],
+  },
+  "niche-mastermind": {
+    slug: "niche-mastermind",
+    name: "Niche Mastermind",
+    category: "community",
+    route: "/community/niche-mastermind",
+    externalUrl: "https://www.niche-mastermind.com/",
+    externalLabel: "niche-mastermind.com",
+    shortDescription:
+      "Strategy games built around Michael Franke's real estate books — turning his frameworks into interactive learning for the Niche community.",
+    ctaLabel: "Visit Niche Mastermind",
+    related: ["get-niche-now", "niche-space", "niche-data"],
   },
   "niche-acquisitions": {
     slug: "niche-acquisitions",
@@ -123,7 +136,11 @@ export const brands: Record<BrandSlug, Brand> = {
 
 export const brandsByCategory: Record<BrandCategory, Brand[]> = {
   ecosystem: [brands["niche-solutions"], brands["niche-data"], brands["niche-crm"]],
-  community: [brands["get-niche-now"], brands["niche-space"]],
+  community: [
+    brands["get-niche-now"],
+    brands["niche-space"],
+    brands["niche-mastermind"],
+  ],
   acquisitions: [
     brands["niche-acquisitions"],
     brands["jv-with-niche"],

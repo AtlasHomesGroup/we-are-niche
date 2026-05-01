@@ -81,6 +81,19 @@ export const pages: PageMeta[] = [
     keywords: ["Niche Space", "real estate mastermind", "Independence Missouri"],
   },
   {
+    title: "Niche Mastermind",
+    route: "/community/niche-mastermind",
+    category: "Community",
+    description:
+      "Niche Mastermind brings Michael Franke's real estate books to life through strategy games — interactive learning for the Niche community.",
+    keywords: [
+      "Niche Mastermind",
+      "real estate games",
+      "Michael Franke books",
+      "real estate education",
+    ],
+  },
+  {
     title: "Niche Acquisitions",
     route: "/acquisitions/niche-acquisitions",
     category: "Acquisitions",

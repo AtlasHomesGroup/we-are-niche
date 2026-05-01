@@ -68,6 +68,7 @@ export const ecosystemMapData: EcosystemMapData = {
       nodes: [
         node("get-niche-now", "Membership", "Daily access & deals"),
         node("niche-space", "Convening", "Events & residency"),
+        node("niche-mastermind", "Learning games", "Strategy from books"),
       ],
     },
     {
