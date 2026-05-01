@@ -16,12 +16,38 @@ export const metadata: Metadata = buildMetadata({
   keywords: [...meta.keywords],
 });
 
+const games = [
+  {
+    label: "Foreclosure Time Mastery Game",
+    href: "https://tff.niche-mastermind.com/",
+  },
+  { label: "KPI Mastery Game", href: "https://kpi.niche-mastermind.com/" },
+  {
+    label: "Marketing Systems Mastery Game",
+    href: "https://mss.niche-mastermind.com/",
+  },
+  {
+    label: "Sales Operating System Mastery Game",
+    href: "https://sos.niche-mastermind.com/",
+  },
+  {
+    label: "Acquisitions Mastery Game",
+    href: "https://acq.niche-mastermind.com/",
+  },
+  {
+    label: "Contract to Close Mastery Game",
+    href: "https://cpc.niche-mastermind.com/",
+  },
+];
+
 export default function NicheMastermindPage() {
   return (
     <BrandPageLayout
       brand={brand}
       eyebrow="Community"
       subtitle="Strategy games built around Michael Franke's real estate books — turning his frameworks into interactive learning for the Niche community."
+      capabilitiesTitle="The games"
+      capabilities={games}
       body={
         <Prose>
           <p>

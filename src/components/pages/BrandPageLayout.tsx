@@ -6,6 +6,8 @@ import { EcosystemFit } from "./EcosystemFit";
 import { RelatedBrands } from "./RelatedBrands";
 import type { Brand } from "@/lib/brands";
 
+export type Capability = string | { label: string; href: string };
+
 interface BrandPageLayoutProps {
   brand: Brand;
   eyebrow: string;
@@ -13,7 +15,7 @@ interface BrandPageLayoutProps {
   body: ReactNode;
   fit: ReactNode;
   capabilitiesTitle?: string;
-  capabilities?: string[];
+  capabilities?: Capability[];
 }
 
 export function BrandPageLayout({
@@ -48,15 +50,30 @@ export function BrandPageLayout({
                     {capabilitiesTitle ?? "Highlights"}
                   </p>
                   <ul className="flex flex-col gap-2.5">
-                    {capabilities.map((c) => (
-                      <li
-                        key={c}
-                        className="flex items-start gap-2.5 text-sm text-[var(--color-text-muted)]"
-                      >
-                        <span className="mt-1.5 h-1.5 w-1.5 flex-none rounded-full bg-[var(--color-accent)]" />
-                        <span>{c}</span>
-                      </li>
-                    ))}
+                    {capabilities.map((c) => {
+                      const isLink = typeof c !== "string";
+                      const label = isLink ? c.label : c;
+                      return (
+                        <li
+                          key={label}
+                          className="flex items-start gap-2.5 text-sm text-[var(--color-text-muted)]"
+                        >
+                          <span className="mt-1.5 h-1.5 w-1.5 flex-none rounded-full bg-[var(--color-accent)]" />
+                          {isLink ? (
+                            <a
+                              href={c.href}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-[var(--color-text)] underline-offset-2 transition-colors hover:text-[var(--color-accent)] hover:underline"
+                            >
+                              {label}
+                            </a>
+                          ) : (
+                            <span>{label}</span>
+                          )}
+                        </li>
+                      );
+                    })}
                   </ul>
                 </div>
               </aside>
